@@ -13,9 +13,6 @@ on:
         type: string
         default: "cluster.yml"
         description: "Path to the kind cluster config file"
-      version:
-        required: true
-        type: string
       helm-values-path:
         type: string
         default: "./todoapp/values.yaml"
