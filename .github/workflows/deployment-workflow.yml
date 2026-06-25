@@ -13,6 +13,9 @@ on:
         type: string
         default: "cluster.yml"
         description: "Path to the kind cluster config file"
+      version:
+        required: true
+        type: string
       helm-values-path:
         type: string
         default: "./todoapp/values.yaml"
@@ -59,7 +62,7 @@ jobs:
           --set todoapp.secrets.DB_NAME='${{ secrets.DB_NAME }}' \
           --set todoapp.secrets.DB_USER='${{ secrets.DB_USER }}' \
           --set todoapp.secrets.DB_HOST='${{ secrets.DB_HOST }}' \
-          --set todoapp.image.version=${{ github.sha }}
+          --set todoapp.image.version=${{ inputs.version }}
 
       - name: Deploy helm
         run: |
@@ -72,4 +75,4 @@ jobs:
           --set todoapp.secrets.DB_NAME='${{ secrets.DB_NAME }}' \
           --set todoapp.secrets.DB_USER='${{ secrets.DB_USER }}' \
           --set todoapp.secrets.DB_HOST='${{ secrets.DB_HOST }}' \
-          --set todoapp.image.version=${{ github.sha }}
+          --set todoapp.image.version=${{ inputs.version }}
